@@ -1,17 +1,17 @@
-# RoleDock
+# CloudLatch
 
 **AWS Session Manager for macOS**
 
-Public website repository for RoleDock, a native Mac menu bar app for AWS MFA sessions and IAM role switching.
+Public website repository for CloudLatch, a native Mac menu bar app for AWS MFA sessions and IAM role switching.
 
 ## Brand
 
-- Product name: **RoleDock**
+- Product name: **CloudLatch**
 - Descriptor: **AWS Session Manager**
-- Repository: `roledock-site`, following `devpulse-site` and `mighty-markdown-site`
+- Repository: `cloudlatch-site`, following `devpulse-site` and `mighty-markdown-site`
 - Language: English
 
-RoleDock combines AWS roles with the idea of a place to manage them on the Mac. It belongs alongside DevPulse and Mighty Markdown as a focused native utility.
+CloudLatch pairs a cloud reference with the idea of controlled access. It belongs alongside DevPulse and Mighty Markdown as a focused native utility.
 
 ## Website scope
 
@@ -25,4 +25,4 @@ Repository initialized. The website has not been built or deployed. The applicat
 
 Only public website content belongs here. Keep application source, AWS credentials, account identifiers, session files, signing material and private diagnostics out of this repository.
 
-RoleDock is an independent product and is not affiliated with or endorsed by Amazon Web Services.
+CloudLatch is an independent product and is not affiliated with or endorsed by Amazon Web Services.
