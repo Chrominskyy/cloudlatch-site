@@ -26,3 +26,11 @@ Repository initialized. The website has not been built or deployed. The applicat
 Only public website content belongs here. Keep application source, AWS credentials, account identifiers, session files, signing material and private diagnostics out of this repository.
 
 CloudLatch is an independent product and is not affiliated with or endorsed by Amazon Web Services.
+
+## Support and reports
+
+Use the [issue chooser](https://github.com/Chrominskyy/cloudlatch-site/issues/new/choose) for bugs, incidents, feature requests and support questions. Reports may be written in English or Polish.
+
+Read [Contributing and support](CONTRIBUTING.md) before attaching evidence. Issues are public; never include AWS credentials, identifiers, profile files or private diagnostics.
+
+Report vulnerabilities through the [private security channel](SECURITY.md). Community participation follows the [Code of conduct](CODE_OF_CONDUCT.md).
