@@ -1,6 +1,6 @@
-# RoleDock website
+# CloudLatch website
 
-- Public brand: RoleDock. Descriptor: AWS Session Manager. Write website content in English.
+- Public brand: CloudLatch. Descriptor: AWS Session Manager. Write website content in English.
 - Keep this repository limited to the public product website, support and privacy material. Do not copy the private application checkout, credentials, AWS identifiers, session files, signing material or diagnostic logs.
 - Describe the implemented IAM-user access-key + MFA flow accurately. Do not claim SSO or external credential-provider support.
 - Do not invent App Store links, screenshots, reviews, prices, contact details or availability. Add a download link only after its destination is verified.
