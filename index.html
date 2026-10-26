@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CloudLatch | AWS Session Manager for macOS</title>
+  <meta name="description" content="A native Mac menu bar app for AWS MFA sessions and IAM role switching. Explore CloudLatch, setup guidance and privacy information.">
+  <meta name="theme-color" content="#285a40"><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <header><a class="brand" href="index.html" aria-label="CloudLatch home">CloudLatch</a><nav aria-label="Main navigation"><a href="#workflow">How it works</a><a href="support.html">Support</a><a href="privacy.html">Privacy</a></nav></header>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div><p class="eyebrow">AWS Session Manager for macOS</p><h1 id="hero-title">Your AWS roles.<br>Within reach.</h1><p>Manage MFA sessions and switch IAM roles from your Mac’s menu bar.</p><div class="actions"><a class="button" href="#workflow">Explore CloudLatch</a><a class="text-link" href="support.html">Setup guide</a></div></div>
+      <figure><img src="assets/cloudlatch-concept.jpg" width="1024" height="1024" alt="Conceptual brushed-metal cloud sculpture with a green sliding latch" fetchpriority="high"></figure>
+    </section>
+    <aside class="notice" aria-label="Availability"><strong>In preparation for the App Store</strong><p>CloudLatch is under development. A download link will be added when the app is available.</p></aside>
+    <section class="section" aria-labelledby="sessions-title">
+      <h2 id="sessions-title">Keep the session in view.</h2><p class="intro">A focused workflow for developers working with IAM user credentials, MFA and multiple AWS roles.</p>
+      <div class="features"><article class="feature-main"><h3>Switch roles from the menu bar.</h3><p>Choose a configured role, authenticate with MFA and see when the role session expires. The source MFA session has its own expiry.</p></article><div class="feature-stack"><article><h3>Renew before expiry.</h3><p>The app attempts to renew the active role five minutes before expiry while the source MFA session remains valid.</p></article><article><h3>Use your AWS profiles.</h3><p>Temporary credentials are written to the selected role profile and <code>default</code> in your chosen AWS directory.</p></article></div></div>
+    </section>
+    <section class="section workflow" id="workflow" aria-labelledby="workflow-title"><h2 id="workflow-title">From MFA to your next task.</h2><p class="intro">Authentication runs through the AWS SDK for Swift. No AWS CLI installation is required.</p><ol class="flow"><li><h3>Choose your directory.</h3><p>Grant access to an AWS configuration folder and select an IAM user access-key profile as the source.</p></li><li><h3>Add your roles.</h3><p>Configure role aliases and your MFA device. Keep the source profile separate from output profiles.</p></li><li><h3>Start a session.</h3><p>Enter an MFA code, assume a configured role and use the resulting temporary credentials in your tools.</p></li></ol><a class="text-link" href="support.html#setup">Read the setup instructions</a></section>
+    <section class="section details" aria-labelledby="access-title"><h2 id="access-title">Explicit access.<br>Visible boundaries.</h2><div><p>You choose the directory the app can access. Source credentials stay in your AWS files; temporary source sessions are stored in macOS Keychain.</p><p>Refreshing updates the selected role profile and <code>default</code>. Other profiles are preserved. Tools using <code>default</code> will use the newly written role credentials.</p><p>Current scope: macOS 14 or later, IAM user access keys and MFA. IAM Identity Center / SSO and external credential providers are not currently supported.</p><a class="text-link" href="privacy.html">Read about data handling</a></div></section>
+    <section class="support-band" aria-labelledby="support-title"><div><h2 id="support-title">A place for every report.</h2><p>Questions, bugs, incidents and feature requests.</p></div><a class="button" href="support.html#reports">Find support</a></section>
+  </main>
+  <footer><div><p>CloudLatch. A native utility for AWS sessions.</p><p>Independent software, not affiliated with or endorsed by Amazon Web Services.</p></div><nav aria-label="Footer navigation"><a href="support.html">Support</a><a href="privacy.html">Privacy</a><a href="https://github.com/Chrominskyy/cloudlatch-site">GitHub</a></nav></footer>
+</div>
+</body></html>
