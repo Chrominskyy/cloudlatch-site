@@ -7,3 +7,4 @@
 - Base privacy material on the actual shipping artifact, including AWS SDK request metadata and bundled declarations. Disabled request logging does not establish Data Not Collected.
 - Prefer a small static site with relative URLs suitable for a GitHub Pages project path. Add dependencies only when the requested behavior needs them.
 - Report repository changes, local preview and live deployment separately. A pushed commit does not prove the site is live.
+- `CHANGELOG.md` is the public-safe app changelog, mirrored from the private app repository's root changelog. Keep it synchronized with app version/build changes and keep its README link visible. Unreleased entries do not mean the app is available. Do not publish app source, private evidence or credentials when updating it.

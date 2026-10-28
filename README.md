@@ -2,6 +2,8 @@
 
 **AWS Session Manager for macOS**
 
+[App changelog](CHANGELOG.md)
+
 Public website repository for CloudLatch, a native Mac menu bar app for AWS MFA sessions and IAM role switching.
 
 ## Brand
