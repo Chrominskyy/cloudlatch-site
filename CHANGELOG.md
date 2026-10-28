@@ -2,6 +2,14 @@
 
 This log describes app changes. An unreleased entry is in development, not an available download or App Store release.
 
+## [1.0.1] - Unreleased
+
+Build: 2
+
+### Fixed
+- Replaced the Project.Hermes icon with CloudLatch cloud-and-lock artwork matching DevPulse and Mighty Markdown.
+- Preserved the original artwork in the repository as `artwork/Media_old.xcassets`.
+
 ## [1.0.0] - Unreleased
 
 Build: 1
