@@ -2,6 +2,14 @@
 
 This log describes app changes. An unreleased entry is in development, not an available download or App Store release.
 
+## [1.1.1] - Unreleased
+
+Build: 4
+
+### Fixed
+- Local builds prepare the pinned AWS SDK from its verified release source archive, avoiding the SDK Git-history fetch in Xcode and SwiftPM.
+- Added a repeatable dependency preparation command shared by native and package builds.
+
 ## [1.1.0] - Unreleased
 
 Build: 3
