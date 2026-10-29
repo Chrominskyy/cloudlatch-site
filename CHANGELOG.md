@@ -2,6 +2,17 @@
 
 This log describes app changes. An unreleased entry is in development, not an available download or App Store release.
 
+## [1.2.0] - Unreleased
+
+Build: 7
+
+### Added
+- Optional access-key authentication without MFA, selectable separately for each saved account.
+- Automatic renewal of temporary source sessions for accounts configured without MFA.
+
+### Changed
+- Existing configurations continue to require MFA. Cached source sessions are isolated by authentication method.
+
 ## [1.1.3] - Unreleased
 
 Build: 6
