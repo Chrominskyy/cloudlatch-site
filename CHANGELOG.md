@@ -2,6 +2,13 @@
 
 This log describes app changes. An unreleased entry is in development, not an available download or App Store release.
 
+## [1.2.1] - Unreleased
+
+Build: 8
+
+### Fixed
+- Restored standard macOS editing shortcuts, including paste, in profile editors and other text fields.
+
 ## [1.2.0] - Unreleased
 
 Build: 7
