@@ -2,6 +2,15 @@
 
 This log describes app changes. An unreleased entry is in development, not an available download or App Store release.
 
+## [1.1.2] - Unreleased
+
+Build: 5
+
+### Changed
+- Updated AWS SDK 1.8.14 → 1.8.17, Smithy 0.259.0 → 0.260.0 and AWS CRT 0.64.2 → 0.64.3.
+- Updated compatible Swift Certificates, Collections, Configuration, Distributed Tracing and NIO Extras releases.
+- Retained checksum-verified SDK archive preparation and local package references for repeatable builds.
+
 ## [1.1.1] - Unreleased
 
 Build: 4
