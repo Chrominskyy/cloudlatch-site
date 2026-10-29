@@ -2,6 +2,19 @@
 
 This log describes app changes. An unreleased entry is in development, not an available download or App Store release.
 
+## [1.1.0] - Unreleased
+
+Build: 3
+
+### Added
+- Saved AWS accounts with names and switching from Settings or the menu bar.
+- Separate account configurations, authorized AWS directories and Keychain MFA sessions.
+- Existing settings remain available as Default account without moving credentials or configuration files.
+
+### Changed
+- Only the selected account renews. Switching preserves cached MFA sessions and requires an explicit role refresh before replacing AWS credentials.
+- Account switching is blocked during a credential refresh; pending prompts are cleared when the account changes.
+
 ## [1.0.1] - Unreleased
 
 Build: 2
