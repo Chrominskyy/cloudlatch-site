@@ -2,6 +2,14 @@
 
 This log describes app changes. An unreleased entry is in development, not an available download or App Store release.
 
+## [1.1.3] - Unreleased
+
+Build: 6
+
+### Fixed
+- Account name entry now receives keyboard focus when adding or renaming an account.
+- SwiftPM launches explicitly use the menu bar app activation policy so Settings can accept keyboard input.
+
 ## [1.1.2] - Unreleased
 
 Build: 5
