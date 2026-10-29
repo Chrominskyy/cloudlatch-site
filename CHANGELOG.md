@@ -2,6 +2,14 @@
 
 This log describes app changes. An unreleased entry is in development, not an available download or App Store release.
 
+## [1.2.2] - Unreleased
+
+Build: 9
+
+### Fixed
+- Menu bar popover closes after a successful refresh and when the app loses focus; refresh errors remain visible.
+- Settings opens in front of other applications, including when reopening an existing Settings window.
+
 ## [1.2.1] - Unreleased
 
 Build: 8
