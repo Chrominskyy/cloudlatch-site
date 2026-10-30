@@ -217,7 +217,7 @@
   }
 
   .site-footer {
-    margin-block-start: var(--space-7);
+    margin-block-start: 0;
     padding-block: var(--space-6);
     background: var(--surface);
     border-block-start: 1px solid var(--line);
@@ -262,6 +262,21 @@
   @media (min-width: 52rem) {
     .hero .container, .hero.container { grid-template-columns: 1.1fr 0.9fr; }
   }
+
+  /* Button row: keep the button and the adjacent link apart */
+  .hero p:has(> .button) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3) var(--space-5);
+  }
+
+  /* Illustration figure: fill the column up to a comfortable width, centred */
+  .container > figure { margin-block: var(--space-5); }
+  .container > figure svg { width: 100%; max-width: 44rem; margin-inline: auto; }
+
+  /* Space between a step list and the link that follows it */
+  .steps + p { margin-block-start: var(--space-5); }
 
   .eyebrow {
     margin: 0 0 var(--space-3);
@@ -386,7 +401,7 @@
     background: var(--surface);
     border-block: 1px solid var(--line);
   }
-  .band .container { max-width: 52rem; }
+  .band .container > * { max-width: 52rem; }
   .band p { color: var(--muted); }
 
   /* Buttons and link buttons */
@@ -431,6 +446,13 @@
     border-radius: var(--radius);
   }
   .prose pre code { background: none; border: 0; padding: 0; }
+
+  /* Troubleshooting disclosures (not the TOC) */
+  details:not(.toc) { border-block-end: 1px solid var(--line); padding-block: var(--space-3); }
+  details:not(.toc):first-of-type { border-block-start: 1px solid var(--line); }
+  details:not(.toc) > summary { cursor: pointer; font-weight: 600; }
+  details:not(.toc) > :not(summary) { margin: var(--space-3) 0 0 var(--space-4); color: var(--muted); }
+  details:not(.toc) > p:last-child { margin-bottom: 0; }
 
   .callout {
     margin-block: var(--space-4);
