@@ -120,7 +120,6 @@
   :focus-visible {
     outline: 3px solid var(--accent);
     outline-offset: 3px;
-    border-radius: 4px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -236,7 +235,7 @@
     list-style: none;
   }
 
-  section { padding-block: var(--space-6); }
+  section:not(.hero, .band, .scope) { padding-block: var(--space-6); }
 }
 
 /* ---------- components ---------- */
@@ -334,10 +333,14 @@
     .steps { grid-template-columns: repeat(3, 1fr); }
   }
 
-  /* Cards respond to their own container width */
+  /* Cards respond to their container's width.
+     Markup contract: <div class="cards-wrap"><ul class="cards">...</ul></div>
+     .cards-wrap is the query container; .cards (the grid) must sit inside it,
+     because a container query cannot style the container element itself. */
+  .cards-wrap {
+    container: cards / inline-size;
+  }
   .cards {
-    container-type: inline-size;
-    container-name: cards;
     display: grid;
     gap: var(--space-4);
     margin: 0;
@@ -379,6 +382,7 @@
 
   /* Full-bleed tinted band, e.g. support call-out */
   .band {
+    padding-block: var(--space-6);
     background: var(--surface);
     border-block: 1px solid var(--line);
   }
