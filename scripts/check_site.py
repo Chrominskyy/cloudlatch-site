@@ -1,10 +1,6 @@
 """Check the small static site without third-party dependencies.
 
-Usage: python3 scripts/check_site.py [--partial]
-
---partial is for work in progress: it skips the three-root-pages assertion and
-tolerates missing index.html, support.html, privacy.html and css/main.css
-link targets. Without it every rule is strict.
+Usage: python3 scripts/check_site.py
 """
 import re
 import sys
@@ -13,9 +9,10 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-PARTIAL = "--partial" in sys.argv[1:]
 BASE_URL = "https://chrominskyy.github.io/cloudlatch-site/"
-PARTIAL_MISSING_OK = {"index.html", "support.html", "privacy.html", "css/main.css"}
+BLOCK_TAGS = {"p", "li", "h1", "h2", "h3", "h4", "h5", "h6", "div", "section",
+              "summary", "td", "th", "figcaption", "br", "ul", "ol", "details", "dt", "dd"}
+TEXT_ATTRS = ("content", "alt", "aria-label", "title")
 REQUIRED_META = ("og:title", "og:description", "og:image")
 
 # Phrases that must not appear on public root pages.
@@ -35,19 +32,29 @@ class Page(HTMLParser):
         self.path, self.ids, self.links = path, set(), []
         self.h1, self.last_level, self.in_title = 0, 0, False
         self.title, self.canonical, self.meta = "", None, {}
+        self.chunks = []
         self.text = path.read_text()
         self.feed(self.text)
+        self.visible = "".join(self.chunks)
 
     def handle_endtag(self, tag):
         if tag == "title":
             self.in_title = False
+        if tag in BLOCK_TAGS:
+            self.chunks.append("\n")
 
     def handle_data(self, data):
         if self.in_title:
             self.title += data
+        self.chunks.append(data)
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
+        if tag in BLOCK_TAGS:
+            self.chunks.append("\n")
+        for key in TEXT_ATTRS:
+            if attrs.get(key):
+                self.chunks.append("\n" + attrs[key] + "\n")
         if "id" in attrs:
             assert attrs["id"] not in self.ids, f"Duplicate id: {self.path}"
             self.ids.add(attrs["id"])
@@ -73,25 +80,26 @@ class Page(HTMLParser):
         for key in ("href", "src"):
             if key in attrs:
                 self.links.append(attrs[key])
-
-
-def tolerated_missing(path):
-    return PARTIAL and path.relative_to(ROOT).as_posix() in PARTIAL_MISSING_OK
+        if attrs.get("srcset"):
+            for candidate in attrs["srcset"].split(","):
+                if candidate.strip():
+                    self.links.append(candidate.split()[0])
 
 
 pages = {path: Page(path) for path in ROOT.glob("*.html")}
-if not PARTIAL:
-    assert len(pages) == 3, "Expected product, support and privacy pages"
+assert len(pages) == 3, "Expected product, support and privacy pages"
 for path, page in pages.items():
     assert page.h1 == 1, f"Expected one main heading: {path}"
     assert page.title.strip(), f"Missing title: {path}"
     assert page.meta.get("description", "").strip(), f"Missing meta description: {path}"
-    assert page.canonical and page.canonical.startswith(BASE_URL), f"Missing or wrong canonical: {path}"
+    expected = BASE_URL if path.name == "index.html" else BASE_URL + path.name
+    assert page.canonical == expected, f"Wrong canonical: {path}: {page.canonical}"
+    assert page.meta.get("og:url") == page.canonical, f"og:url differs from canonical: {path}"
     for key in REQUIRED_META:
         assert page.meta.get(key, "").strip(), f"Missing {key}: {path}"
     for label, pattern in FORBIDDEN:
-        assert not pattern.search(page.text), f"Forbidden {label}: {path}"
-    for sentence in re.split(r"(?<=[.!?])\s+|\n", page.text):
+        assert not pattern.search(page.text) and not pattern.search(page.visible), f"Forbidden {label}: {path}"
+    for sentence in re.split(r"(?<=[.!?])\s+|\n", page.visible):
         for pattern in NEGATION_ONLY:
             if pattern.search(sentence):
                 assert re.search(r"\bnot\b", sentence, re.I), f"Unnegated claim '{pattern.pattern}': {path}: {sentence.strip()[:80]}"
@@ -103,9 +111,7 @@ for path, page in pages.items():
         assert not url.path.startswith("/"), f"Project-path-unsafe link: {link}"
         target = (path.parent / unquote(url.path)).resolve() if url.path else path
         assert target.is_relative_to(ROOT), f"Link leaves site: {link}"
-        if not target.is_file():
-            assert tolerated_missing(target), f"Missing local target: {link}"
-            continue
+        assert target.is_file(), f"Missing local target: {link}"
         if url.fragment and target in pages:
             assert unquote(url.fragment) in pages[target].ids, f"Missing anchor: {link}"
 
@@ -114,5 +120,4 @@ old_pages = sorted((ROOT / "_old").glob("*.html"))
 for path in old_pages:
     assert "noindex" in path.read_text(), f"Backup page missing noindex: {path}"
 
-mode = "partial" if PARTIAL else "strict"
-print(f"Passed ({mode}): {len(pages)} pages, {len(old_pages)} backup pages, local assets, links, anchors and basic semantics")
+print(f"Passed (strict): {len(pages)} pages, {len(old_pages)} backup pages, local assets, links, anchors and basic semantics")

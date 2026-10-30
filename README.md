@@ -44,7 +44,7 @@ Report vulnerabilities through the [private security channel](SECURITY.md). Comm
 - `assets/`: hero images (WebP and JPEG), favicon and social image.
 - `docs/design.md`: design system and asset provenance. `docs/superpowers/`: redesign spec and plan.
 - `scripts/check_site.py`: static checker. `robots.txt`, `sitemap.xml`: crawler metadata.
-- `_old/`: backup of the previous site. Pages are `noindex` and `robots.txt` disallows the folder; it is not linked from the site navigation.
+- `_old/`: backup of the previous site. Pages carry a `noindex` meta tag, which is what keeps them out of search results (`robots.txt` takes effect only if served at the host root, not under a project path); it is not linked from the site navigation.
 
 ## Local preview
 

@@ -25,7 +25,7 @@ Each page has a title, description, canonical URL, Open Graph and Twitter card t
 
 ## Backup
 
-The previous site is kept under `_old/` (pages, `styles.css`, assets and the previous design notes). Its pages carry `noindex` and `robots.txt` disallows `/cloudlatch-site/_old/`. It is excluded from `scripts/check_site.py`.
+The previous site is kept under `_old/` (pages, `styles.css`, assets and the previous design notes). Its pages carry a `noindex` meta tag, which is what keeps them out of search results. `robots.txt` disallows `/cloudlatch-site/_old/`, but it takes effect only if served at the host root, not under the project path. It is excluded from `scripts/check_site.py`.
 
 ## Content rules
 
