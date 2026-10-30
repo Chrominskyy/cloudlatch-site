@@ -37,6 +37,15 @@ Read [Contributing and support](CONTRIBUTING.md) before attaching evidence. Issu
 
 Report vulnerabilities through the [private security channel](SECURITY.md). Community participation follows the [Code of conduct](CODE_OF_CONDUCT.md).
 
+## Layout
+
+- `index.html`, `support.html`, `privacy.html`: the three pages.
+- `css/main.css`: the single stylesheet (cascade layers).
+- `assets/`: hero images (WebP and JPEG), favicon and social image.
+- `docs/design.md`: design system and asset provenance. `docs/superpowers/`: redesign spec and plan.
+- `scripts/check_site.py`: static checker. `robots.txt`, `sitemap.xml`: crawler metadata.
+- `_old/`: backup of the previous site. Pages are `noindex` and `robots.txt` disallows the folder; it is not part of the live navigation.
+
 ## Local preview
 
 No package installation or build step is required.
@@ -46,7 +55,7 @@ python3 scripts/check_site.py
 python3 -m http.server 8765 --bind 127.0.0.1
 ```
 
-Open http://127.0.0.1:8765. Relative links support the GitHub Pages project path.
+Open http://127.0.0.1:8765. Relative links support the GitHub Pages project path. The checker skips `_old/`.
 
 ## Release work
 
