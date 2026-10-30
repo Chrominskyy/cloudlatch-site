@@ -23,7 +23,7 @@ CloudLatch pairs a cloud reference with the idea of controlled access. It belong
 
 ## Status
 
-The first static website is implemented: product overview, setup/support and development-stage privacy information. It is published at https://chrominskyy.github.io/cloudlatch-site/. The application is being prepared for App Store distribution; no download or App Store availability is claimed.
+The first static website is implemented: product overview, setup/support and development-stage privacy information. It is intended to be served from https://chrominskyy.github.io/cloudlatch-site/ via GitHub Pages; live deployment is not verified from this repository. The application is being prepared for App Store distribution; no download or App Store availability is claimed.
 
 Only public website content belongs here. Keep application source, AWS credentials, account identifiers, session files, signing material and private diagnostics out of this repository.
 
@@ -44,7 +44,7 @@ Report vulnerabilities through the [private security channel](SECURITY.md). Comm
 - `assets/`: hero images (WebP and JPEG), favicon and social image.
 - `docs/design.md`: design system and asset provenance. `docs/superpowers/`: redesign spec and plan.
 - `scripts/check_site.py`: static checker. `robots.txt`, `sitemap.xml`: crawler metadata.
-- `_old/`: backup of the previous site. Pages are `noindex` and `robots.txt` disallows the folder; it is not part of the live navigation.
+- `_old/`: backup of the previous site. Pages are `noindex` and `robots.txt` disallows the folder; it is not linked from the site navigation.
 
 ## Local preview
 
@@ -61,6 +61,6 @@ Open http://127.0.0.1:8765. Relative links support the GitHub Pages project path
 
 - Verify the final app artifact and replace development-stage privacy information with the approved policy and dedicated privacy contact.
 - Add approved app screenshots and a verified App Store URL when available.
-- Keep the live GitHub Pages site aligned with the shipping app.
+- Keep the GitHub Pages site aligned with the shipping app.
 
 The site uses no JavaScript, remote fonts, analytics or third-party embeds. Appearance follows the system light/dark preference.
