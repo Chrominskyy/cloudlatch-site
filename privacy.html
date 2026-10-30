@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy policy | CloudLatch</title>
+  <meta name="description" content="CloudLatch privacy policy: AWS authentication, local storage, retention and instructions for removing your data.">
+  <link rel="canonical" href="https://chrominskyy.github.io/cloudlatch-site/privacy.html">
+  <meta name="theme-color" content="#f5f8f6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b201d" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CloudLatch">
+  <meta property="og:title" content="Privacy policy | CloudLatch">
+  <meta property="og:description" content="CloudLatch privacy policy: AWS authentication, local storage, retention and instructions for removing your data.">
+  <meta property="og:url" content="https://chrominskyy.github.io/cloudlatch-site/privacy.html">
+  <meta property="og:image" content="https://chrominskyy.github.io/cloudlatch-site/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Privacy policy | CloudLatch">
+  <meta name="twitter:description" content="CloudLatch privacy policy: AWS authentication, local storage, retention and instructions for removing your data.">
+  <meta name="twitter:image" content="https://chrominskyy.github.io/cloudlatch-site/assets/og-image.png">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html" aria-label="CloudLatch home">CloudLatch</a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html#workflow">How it works</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="privacy.html" aria-current="page">Privacy</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <div class="container">
+    <div class="page-head">
+<h1>Privacy policy.</h1>
+<p class="lead">How CloudLatch handles AWS authentication data and how you can remove local data.</p>
+<p class="updated">Last updated: October 28, 2026. Applies to the signed CloudLatch 1.0.0 release candidate.</p>
+    </div>
+    <details class="toc" open>
+      <summary>On this page</summary>
+      <ul><li><a href="#who-provides-cloudlatch">Who provides CloudLatch</a></li><li><a href="#credentials-and-authentication">Credentials and authentication</a></li><li><a href="#local-configuration-and-diagnostics">Local configuration and diagnostics</a></li><li><a href="#aws-processing">AWS processing</a></li><li><a href="#retention-and-your-choices">Retention and your choices</a></li><li><a href="#remove-data">Remove CloudLatch data</a></li><li><a href="#website-and-support">Website and support</a></li><li><a href="#contact">Contact</a></li></ul>
+    </details>
+    <div class="prose">
+<div class="callout"><strong>Release preparation</strong><p>This policy is based on the inspected signed application and its bundled SDK privacy declarations. CloudLatch is not publicly available yet. Final App Store privacy answers remain separate from this policy.</p></div>
+
+<h2 id="who-provides-cloudlatch">Who provides CloudLatch</h2><p>CloudLatch is an independent macOS utility maintained by <a href="https://github.com/Chrominskyy">Chrominsky</a>. It does not require a CloudLatch account or send credentials to a CloudLatch-operated server. Your AWS account, permissions and MFA device are provided separately by you or your organization.</p>
+
+<h2 id="credentials-and-authentication">Credentials and authentication</h2><p>CloudLatch reads IAM user access keys from the AWS directory and source profile you select. The SDK uses the secret access key locally to sign AWS Security Token Service (STS) requests. Your access-key identifier, MFA code and device serial are used in authentication with AWS over HTTPS.</p><p>Temporary source credentials are held in memory and stored in macOS Keychain. The MFA device serial is also stored in Keychain. MFA codes are used for the authentication request and are not saved in the application's configuration or Keychain.</p><p>Role ARNs and a role-session name containing the configured alias are sent to AWS when you assume a role. Returned temporary role credentials are written to the selected role profile and <code>default</code> in your chosen credentials file. Credential values in these two profiles are replaced; other profiles are preserved. CloudLatch does not store your AWS console password.</p>
+
+<h2 id="local-configuration-and-diagnostics">Local configuration and diagnostics</h2><p>Role aliases, role ARNs and preferences are stored in Application Support inside the app container. A local security bookmark remembers access to your selected AWS directory. Session-state files can include the active profile, account ID, expiration and last error.</p><p>Diagnostic files and macOS logs contain generic refresh-started and refresh-failed events. The app omits profile/source names and raw AWS error payloads from those diagnostic events. No app-operated advertising, analytics, crash-reporting service or remote backend is included in the inspected release candidate.</p>
+
+<h2 id="aws-processing">AWS processing</h2><p>AWS receives authentication requests and network information needed to process them, including the source IP address. SDK request metadata can include SDK, operating-system and language versions, feature flags and the app identifier. The bundled AWS SDK declares Other Diagnostic Data used for app functionality, without tracking or linkage to a person in that declaration.</p><p>AWS STS activity can also create account-linked CloudTrail records containing identity, time, request and network metadata. CloudLatch does not control those AWS records or their retention. See <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html">AWS STS logging</a>, the <a href="https://aws.amazon.com/privacy/">AWS Privacy Notice</a> and the terms governing your AWS account.</p><p>SDK client logging is disabled. This does not prevent AWS request processing or mean that no data leaves your device. CloudLatch does not use the inspected data flow for cross-app advertising or tracking.</p>
+
+<h2 id="retention-and-your-choices">Retention and your choices</h2><p>Temporary credentials expire at the times returned by AWS. Expiration does not automatically remove every saved copy. Configuration, bookmarks, state, logs and Keychain entries can remain until removed or replaced. Changing authentication settings invalidates the cached source session; credentials already written to the shared AWS file remain separate.</p><p>You control whether to launch the app, grant folder access or request a refresh. Quit CloudLatch to stop its automatic renewal. Removing local credentials does not revoke an already issued AWS session or remove AWS audit records. An AWS administrator controls account permissions and applicable revocation and retention procedures.</p>
+
+<h2 id="remove-data">Remove CloudLatch data</h2><ol><li><strong>Quit CloudLatch first.</strong> This stops the app from renewing sessions or recreating local files during removal.</li><li><strong>Review your selected AWS credentials file.</strong> Remove only CloudLatch-written temporary credential values from the role profiles you used and from <code>default</code>, or restore those profiles from your own backup. Other tools may have changed them since CloudLatch last ran. Do not delete the whole file, your source IAM access keys or unrelated profiles.</li><li><strong>Remove CloudLatch Keychain entries.</strong> In Keychain Access, inspect generic-password items with service <code>aws-login-helper</code>. The source-session account is <code>shared-mfa-session</code>; the default MFA-device account is <code>shared-mfa-device</code>, or the account configured in your app configuration. Delete only entries you have identified as belonging to CloudLatch. Older versions may share these service names.</li><li><strong>Remove local app files.</strong> In Finder, use Go to Folder and open <code>~/Library/Containers/dev.cloudlatch.mac/Data/Library/Application Support/AWSLoginHelper/</code>. The app stores <code>config.toml</code>, <code>state.json</code>, <code>aws-directory.bookmark</code> and <code>Logs/hermes.log</code> there. Remove the CloudLatch files after preserving anything you need. Legacy installations may also have files in <code>~/Library/Application Support/AWSLoginHelper/</code>; inspect before removing them.</li><li><strong>Remove the application if desired.</strong> Uninstalling alone does not guarantee removal of Keychain items, shared AWS credential profiles or backups. macOS unified logs and your backups have their own retention. Contact your AWS administrator for server-side access changes or audit-record questions.</li></ol><p>CloudLatch does not create an online CloudLatch account, so there is no separate CloudLatch server account to delete. These steps describe local removal; they do not promise immediate erasure from operating-system logs, backups or AWS.</p>
+
+<h2 id="website-and-support">Website and support</h2><p>This static website uses no analytics scripts, advertising, site cookies, embedded third-party media or remote fonts. GitHub Pages serves the site and may process connection information. See <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.</p><p>GitHub support issues and their attachments are public. Report text is kept by GitHub and the project until removed under the applicable controls and policies. Use fictional examples and never attach credentials, MFA codes, account identifiers or unredacted logs.</p>
+
+<h2 id="contact">Contact</h2><p>For product or general privacy questions, use <a href="https://github.com/Chrominskyy/cloudlatch-site/issues/new/choose">CloudLatch support on GitHub</a>. To request private follow-up, ask for a private contact channel without including personal or confidential information in the public issue. Suspected vulnerabilities belong in <a href="https://github.com/Chrominskyy/cloudlatch-site/security/advisories/new">private vulnerability reporting</a>; that channel is for security reports.</p><p>Material changes to this policy will be posted here with an updated date.</p>
+    </div>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <p>by <a href="https://github.com/Chrominskyy">Chrominsky</a></p>
+    <p>CloudLatch. A native utility for AWS sessions.</p>
+    <p>Independent software, not affiliated with or endorsed by Amazon Web Services.</p>
+    <nav aria-label="Footer navigation">
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="https://github.com/Chrominskyy/cloudlatch-site">GitHub</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
