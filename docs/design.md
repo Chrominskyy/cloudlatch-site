@@ -1,11 +1,32 @@
-# CloudLatch website direction
+# CloudLatch website design
 
-Native macOS utility landing page for developers using AWS IAM roles. Restrained industrial aesthetic, system sans typography, cool neutrals and one forest-green accent. Native CSS, no framework or client JavaScript.
+Product-led static site in the style of a native macOS utility. Three pages (`index.html`, `support.html`, `privacy.html`), one stylesheet (`css/main.css`), no JavaScript, remote fonts, analytics or third-party embeds.
 
-Design variance: 5/10. Motion intensity: 2/10. Visual density: 3/10. Light and dark palettes follow the operating system. Low motion keeps support and security information readable.
+## System
 
-The hero image is conceptual brand artwork, not an app screenshot. Generated with the built-in image generation tool; optimized locally as `assets/cloudlatch-concept.jpg`.
+- Cascade layers in order: `tokens`, `base`, `layout`, `components`, `pages`.
+- System font stack with fluid type via `clamp()`.
+- OKLCH tokens: cool neutrals and a forest-green accent. Light and dark follow `prefers-color-scheme`; text contrast is at least 4.5:1.
+- Spacing token scale, 16px minimum side gutter on phones, CSS grid and container queries.
+- Cards: `.cards-wrap` is the query container and `.cards` the grid inside it.
+- Support and privacy: sticky table of contents beside the prose on wide screens; a collapsed `<details class="toc">` on narrow screens.
+- Transitions only, disabled under `prefers-reduced-motion`. Visible `:focus-visible` outlines and a skip link.
 
-Generation prompt: A restrained studio 3D still life of a brushed-aluminum cloud sculpture with a dark forest-green mechanical sliding latch, on a cool light-gray seamless surface. Soft side light, machined-metal detail, delicate shadows, square composition. No text, logos, UI, screens, neon or gradients. Conceptual brand sculpture, not a real product.
+## Asset provenance
 
-Product and support copy was checked against the current app README, Settings/menu UI and privacy audit on October 26, 2026. Privacy content remains explicitly provisional until the distribution artifact, removal instructions and contact are finalized. No download link or app screenshot is fabricated.
+- The hero image is conceptual brand artwork generated with an image generation tool and optimized locally. It is not an app screenshot. Source: the previous `cloudlatch-concept.jpg`, kept in `_old/assets/`.
+- The menu-bar illustration on the home page is hand-written inline SVG. It is an abstract drawing, not a screenshot, and contains no identifiers.
+- The hero ships as WebP and JPEG at 512 and 1024 px. AVIF was not produced because no encoder was available.
+- `assets/favicon.svg` and `assets/og-image.png` are brand assets. No app screenshots, App Store links, prices or reviews are used.
+
+## Metadata
+
+Each page has a title, description, canonical URL, Open Graph and Twitter card tags and `theme-color` for both schemes. The index canonical is the bare directory URL. There is no `SoftwareApplication` JSON-LD because it would imply availability and pricing. `sitemap.xml` lists the three canonical URLs.
+
+## Backup
+
+The previous site is kept under `_old/` (pages, `styles.css`, assets and the previous design notes). Its pages carry a `noindex` meta tag, which is what keeps them out of search results. `robots.txt` disallows `/cloudlatch-site/_old/`, but it takes effect only if served at the host root, not under the project path. It is excluded from `scripts/check_site.py`.
+
+## Content rules
+
+Product, support and privacy copy follows `AGENTS.md`: IAM-user access key and MFA only, no SSO claim, no invented App Store link. Privacy content remains development-stage until the distribution artifact and contact are final.

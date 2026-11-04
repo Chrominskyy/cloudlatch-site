@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /cloudlatch-site/_old/
+Sitemap: https://chrominskyy.github.io/cloudlatch-site/sitemap.xml
