@@ -1,158 +1,231 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CloudLatch | AWS Session Manager for macOS</title>
-  <meta name="description" content="A native Mac menu bar app for AWS MFA sessions and IAM role switching. Explore CloudLatch, setup guidance and privacy information.">
-  <link rel="canonical" href="https://chrominskyy.github.io/cloudlatch-site/">
-  <meta name="theme-color" content="#f5f8f6" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#1b201d" media="(prefers-color-scheme: dark)">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="CloudLatch">
-  <meta property="og:title" content="CloudLatch | AWS Session Manager for macOS">
-  <meta property="og:description" content="A native Mac menu bar app for AWS MFA sessions and IAM role switching. Explore CloudLatch, setup guidance and privacy information.">
-  <meta property="og:url" content="https://chrominskyy.github.io/cloudlatch-site/">
-  <meta property="og:image" content="https://chrominskyy.github.io/cloudlatch-site/assets/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="CloudLatch | AWS Session Manager for macOS">
-  <meta name="twitter:description" content="A native Mac menu bar app for AWS MFA sessions and IAM role switching. Explore CloudLatch, setup guidance and privacy information.">
-  <meta name="twitter:image" content="https://chrominskyy.github.io/cloudlatch-site/assets/og-image.png">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/main.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#eef1f5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0a111d" media="(prefers-color-scheme: dark)">
+<title>CloudLatch | AWS Session Manager for macOS</title>
+<meta name="description" content="A native Mac menu bar app for AWS role sessions. Assume IAM roles with or without MFA, see both expiry times, and let the active role renew before it expires.">
+<link rel="canonical" href="https://chrominskyy.github.io/cloudlatch-site/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CloudLatch">
+<meta property="og:title" content="CloudLatch | AWS Session Manager for macOS">
+<meta property="og:description" content="AWS roles, one click from the menu bar. Assume IAM roles with or without MFA, and keep the active role renewed.">
+<meta property="og:url" content="https://chrominskyy.github.io/cloudlatch-site/">
+<meta property="og:image" content="https://chrominskyy.github.io/cloudlatch-site/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="CloudLatch. AWS roles, one click from the menu bar.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
+<a class="skip" href="#main">Skip to content</a>
+
 <header class="site-header">
-  <div class="container">
-    <a class="brand" href="index.html" aria-label="CloudLatch home">CloudLatch</a>
+  <div class="wrap header-inner">
+    <a class="brand" href="./" aria-label="CloudLatch home">
+      <img src="assets/app-icon-256.png" alt="CloudLatch app icon" width="30" height="30">
+      <span>CloudLatch</span>
+    </a>
     <nav class="site-nav" aria-label="Main navigation">
-      <ul>
-        <li><a href="index.html#workflow">How it works</a></li>
-        <li><a href="support.html">Support</a></li>
-        <li><a href="privacy.html">Privacy</a></li>
-      </ul>
+      <a class="wide" href="#sessions">Sessions</a>
+      <a class="wide" href="#setup">Setup</a>
+      <a class="wide" href="#accounts">Accounts</a>
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy</a>
     </nav>
   </div>
 </header>
+
 <main id="main">
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="container">
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow">AWS Session Manager for macOS</p>
-        <h1 id="hero-title">Your AWS roles. Within reach.</h1>
-        <p class="lead">Manage MFA sessions and switch IAM roles from your Mac’s menu bar.</p>
-        <p class="notice"><strong>In preparation for the App Store</strong></p>
-        <p>CloudLatch is under development. A download link will be added when the app is available.</p>
-        <p><a class="button" href="#workflow">Explore CloudLatch</a> <a href="support.html">Setup guide</a></p>
+        <p class="eyebrow rise" style="--d:0">AWS Session Manager for macOS</p>
+        <h1 id="hero-h" class="rise" style="--d:1">AWS roles, <span>one click</span> from the menu bar.</h1>
+        <p class="lede rise" style="--d:2">Assume an IAM role with or without MFA, see when the source and role sessions expire, and let the active role renew five minutes before it runs out. The temporary credentials land in your own AWS files.</p>
+        <div class="cta-row rise" style="--d:3">
+          <a class="button primary" href="#setup">How it works</a>
+          <a class="button" href="support.html">Setup guide</a>
+        </div>
+        <span class="pill rise" style="--d:4">Version 1.2 in development · not yet on the App Store</span>
       </div>
-      <picture>
-        <source type="image/webp" srcset="assets/cloudlatch-hero-512.webp 512w, assets/cloudlatch-hero-1024.webp 1024w" sizes="(min-width: 52rem) 34rem, 100vw">
-        <img src="assets/cloudlatch-hero-1024.jpg" srcset="assets/cloudlatch-hero-512.jpg 512w, assets/cloudlatch-hero-1024.jpg 1024w" sizes="(min-width: 52rem) 34rem, 100vw" width="1024" height="1024" alt="Conceptual brushed-metal cloud sculpture with a green sliding latch" fetchpriority="high">
-      </picture>
+
+      <figure class="stage rise" style="--d:2" aria-label="Illustration of the CloudLatch menu bar item and its panel with an active role session, using sample data">
+        <div class="menubar" aria-hidden="true">
+          <span class="left"><span>Terminal</span><span>Shell</span><span>Edit</span></span>
+          <span class="status-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3 4.5 6v5.5c0 4.5 3.2 8.2 7.5 9.5 4.3-1.3 7.5-5 7.5-9.5V6L12 3Z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10 11V9.5a2 2 0 0 1 4 0V11"/></svg>AWS: dev</span>
+          <span class="clock">Wed 9:41</span>
+        </div>
+        <div class="popover" aria-hidden="true">
+          <div class="menu-btn">Account: Work</div>
+          <p class="ph">AWS: dev</p>
+          <p class="row">Source profile: work-source</p>
+          <p class="row sec">Source MFA valid until: 11/5/26, 9:12 PM</p>
+          <p class="row">Expires: 10:41 AM</p>
+          <p class="row sec">Selected profile: dev</p>
+          <p class="row">Active profile: dev</p>
+          <p class="row">Account: 123456789012</p>
+          <div class="menu-btn">Switch Profile</div>
+          <div class="menu-btn plain focus">Refresh dev...</div>
+          <div class="menu-btn plain">Settings...</div>
+          <hr>
+          <p class="row">Quit</p>
+        </div>
+        <figcaption class="stage-caption">Illustration of the app's menu panel · labels from the app, sample data</figcaption>
+      </figure>
     </div>
   </section>
 
-  <section aria-labelledby="sessions-title">
-    <div class="container">
-      <h2 id="sessions-title">Keep the session in view.</h2>
-      <p>A focused workflow for developers working with IAM user credentials, MFA and multiple AWS roles.</p>
-      <figure>
-        <svg role="img" aria-label="Abstract illustration of a menu bar app, not a screenshot: a menu bar with a highlighted item and a dropdown listing three roles, one marked active, with a progress bar." viewBox="0 0 640 300" width="640" height="300" xmlns="http://www.w3.org/2000/svg">
-          <rect x="1" y="1" width="638" height="298" rx="16" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/>
-          <rect x="1" y="1" width="638" height="34" rx="16" fill="var(--bg)" stroke="var(--line)" stroke-width="2"/>
-          <circle cx="24" cy="18" r="6" fill="var(--muted)"/>
-          <rect x="44" y="13" width="48" height="10" rx="5" fill="var(--line)"/>
-          <rect x="104" y="13" width="36" height="10" rx="5" fill="var(--line)"/>
-          <rect x="470" y="12" width="28" height="12" rx="6" fill="var(--line)"/>
-          <rect x="508" y="9" width="40" height="18" rx="9" fill="var(--accent)"/>
-          <circle cx="528" cy="18" r="4" fill="var(--on-accent)"/>
-          <rect x="560" y="12" width="60" height="12" rx="6" fill="var(--line)"/>
-          <rect x="388" y="46" width="232" height="238" rx="12" fill="var(--bg)" stroke="var(--line)" stroke-width="2"/>
-          <rect x="404" y="62" width="120" height="12" rx="6" fill="var(--muted)"/>
-          <rect x="404" y="86" width="200" height="40" rx="8" fill="var(--surface)" stroke="var(--accent)" stroke-width="2"/>
-          <circle cx="424" cy="106" r="6" fill="var(--accent)"/>
-          <rect x="440" y="100" width="100" height="12" rx="6" fill="var(--text)" opacity="0.7"/>
-          <rect x="404" y="134" width="200" height="40" rx="8" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/>
-          <circle cx="424" cy="154" r="6" fill="var(--line)"/>
-          <rect x="440" y="148" width="80" height="12" rx="6" fill="var(--muted)" opacity="0.6"/>
-          <rect x="404" y="182" width="200" height="40" rx="8" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/>
-          <circle cx="424" cy="202" r="6" fill="var(--line)"/>
-          <rect x="440" y="196" width="110" height="12" rx="6" fill="var(--muted)" opacity="0.6"/>
-          <rect x="404" y="242" width="200" height="10" rx="5" fill="var(--line)"/>
-          <rect x="404" y="242" width="140" height="10" rx="5" fill="var(--accent)"/>
-          <rect x="404" y="262" width="90" height="8" rx="4" fill="var(--muted)" opacity="0.5"/>
-        </svg>
-      </figure>
-      <div class="cards-wrap">
-        <ul class="cards">
-          <li class="card">
-            <h3>Switch roles from the menu bar.</h3>
-            <p>Choose a configured role, authenticate with MFA and see when the role session expires. The source MFA session has its own expiry.</p>
-          </li>
-          <li class="card">
-            <h3>Renew before expiry.</h3>
-            <p>The app attempts to renew the active role five minutes before expiry while the source MFA session remains valid.</p>
-          </li>
-          <li class="card">
-            <h3>Use your AWS profiles.</h3>
-            <p>Temporary credentials are written to the selected role profile and <code>default</code> in your chosen AWS directory.</p>
-          </li>
+  <section class="section" id="sessions" aria-labelledby="sessions-h">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">01 · Sessions</span>
+          <h2 id="sessions-h">Two sessions, <span>two clocks.</span></h2>
+        </div>
+        <p>A temporary source session comes from your IAM user's access keys. Roles are assumed from it. CloudLatch shows both expiry times, so you know which one needs attention.</p>
+      </div>
+      <div class="clocks">
+        <div class="track">
+          <div class="name">Source session<small>GetSessionToken · up to 12 h</small></div>
+          <div class="bar source"><div class="fill">Source MFA valid until 9:12 PM</div></div>
+        </div>
+        <div class="track">
+          <div class="name">Role session<small>AssumeRole · renewed</small></div>
+          <div class="bar"><div class="roles"><div class="fill">dev</div><div class="fill">dev</div><div class="fill">dev</div><div class="fill">dev</div><div class="fill">dev</div></div></div>
+        </div>
+        <div class="legend">
+          <span><i class="l1"></i>source session</span>
+          <span><i class="l2"></i>role session</span>
+          <span><i class="l3"></i>renewal window, five minutes before expiry</span>
+        </div>
+        <div class="clock-notes">
+          <div class="note"><h3>Renew before expiry</h3><p>The active role renews five minutes before it expires, as long as the source session is still valid.</p></div>
+          <div class="note"><h3>With MFA</h3><p>When the source session ends, the panel asks for a fresh MFA code. CloudLatch requests a 12-hour source session; AWS decides the actual expiry.</p></div>
+          <div class="note"><h3>Without MFA</h3><p>An account set up for access keys without MFA gets a new source session automatically, if your AWS policies allow it.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="setup" aria-labelledby="setup-h">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">02 · Setup</span>
+          <h2 id="setup-h">From access keys to <span>your next task.</span></h2>
+        </div>
+        <p>Authentication runs in the app through the AWS SDK for Swift. No AWS CLI installation is required.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>Choose your directory</h3><p>Open <strong>Settings...</strong> and grant access to your AWS configuration folder. The folder picker can show hidden folders.</p></li>
+        <li><h3>Describe the source</h3><p>Enter the IAM user's source profile, pick access keys with or without MFA, and paste roles as <code>alias=roleArn</code>, one per line.</p></li>
+        <li><h3>Refresh a role</h3><p>Choose a profile and select <strong>Refresh dev...</strong>. Enter an MFA code if asked, and the credentials are written for your tools.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="files" aria-labelledby="files-h">
+    <div class="wrap file-grid">
+      <div class="file" role="img" aria-label="Illustration of an AWS credentials file: the dev and default profiles are updated by CloudLatch, the source and other profiles are left as they were">
+        <div class="file-bar"><span>~/.aws/credentials</span><span>sample data</span></div>
+<pre><span class="sec">[work-source] <i class="tag keep">untouched</i></span><span class="key k">aws_access_key_id = AKIA…EXAMPLE</span><span class="key k">aws_secret_access_key = ••••••••</span><span> </span><span class="sec w">[dev] <i class="tag">written</i></span><span class="key w">aws_access_key_id = ASIA…EXAMPLE</span><span class="key w">aws_session_token = ••••••••</span><span> </span><span class="sec w">[default] <i class="tag">written</i></span><span class="key w">aws_access_key_id = ASIA…EXAMPLE</span><span class="key w">aws_session_token = ••••••••</span><span> </span><span class="sec">[personal] <i class="tag keep">preserved</i></span><span class="key k">aws_access_key_id = AKIA…EXAMPLE</span></pre>
+      </div>
+      <div>
+        <span class="kicker">03 · Your files</span>
+        <h2 id="files-h" class="visually-hidden">What a refresh writes</h2>
+        <ul class="points">
+          <li><strong>The selected role profile and <code>default</code></strong> get the new temporary credentials. Tools that use <code>default</code> pick them up right away.</li>
+          <li class="keep"><strong>Your source profile</strong> stays in your AWS files. Long-lived access keys are never copied into the Keychain.</li>
+          <li class="keep"><strong>Every other profile</strong> and unrelated key is preserved. Ambiguous or invalid files are rejected rather than overwritten.</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <section id="workflow" aria-labelledby="workflow-title">
-    <div class="container">
-      <h2 id="workflow-title">From MFA to your next task.</h2>
-      <p>Authentication runs through the AWS SDK for Swift. No AWS CLI installation is required.</p>
-      <ol class="steps">
-        <li>
-          <h3>Choose your directory.</h3>
-          <p>Grant access to an AWS configuration folder and select an IAM user access-key profile as the source.</p>
-        </li>
-        <li>
-          <h3>Add your roles.</h3>
-          <p>Configure role aliases and your MFA device. Keep the source profile separate from output profiles.</p>
-        </li>
-        <li>
-          <h3>Start a session.</h3>
-          <p>Enter an MFA code, assume a configured role and use the resulting temporary credentials in your tools.</p>
-        </li>
-      </ol>
-      <p><a href="support.html#setup">Read the setup instructions</a></p>
-    </div>
-  </section>
-
-  <section aria-labelledby="access-title">
-    <div class="container">
-      <div class="scope">
-        <h2 id="access-title">Explicit access. Visible boundaries.</h2>
-        <p>You choose the directory the app can access. Source credentials stay in your AWS files; temporary source sessions are stored in macOS Keychain.</p>
-        <p>Refreshing updates the selected role profile and <code>default</code>. Other profiles are preserved. Tools using <code>default</code> will use the newly written role credentials.</p>
-        <p>Current scope: macOS 14 or later, IAM user access keys and MFA. IAM Identity Center / SSO and external credential providers are not currently supported.</p>
-        <p><a href="privacy.html">Read about data handling</a></p>
+  <section class="section" id="accounts" aria-labelledby="accounts-h">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">04 · Accounts and authentication</span>
+          <h2 id="accounts-h">Several AWS setups, <span>kept apart.</span></h2>
+        </div>
+        <p>Save separate accounts for work, clients or a personal sandbox, and choose per account whether it signs in with MFA.</p>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <span class="tag">since 1.1</span>
+          <h3>Saved accounts</h3>
+          <p>Each account keeps its own source configuration, role list, AWS directory and Keychain source session. Switch from Settings or the <strong>Account</strong> menu in the panel.</p>
+          <p>Only the selected account renews. Switching alone never rewrites your AWS files; the next <strong>Refresh</strong> does.</p>
+        </div>
+        <div class="feature">
+          <span class="tag">since 1.2</span>
+          <h3>MFA, or not</h3>
+          <p>Choose <strong>Access keys with MFA</strong> or <strong>Access keys without MFA</strong> for every account. Existing setups keep requiring MFA.</p>
+          <p>Without MFA, Refresh runs without a code prompt. Your AWS policies still decide whether that access is allowed.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="band" aria-labelledby="support-title">
-    <div class="container">
-      <h2 id="support-title">A place for every report.</h2>
-      <p>Questions, bugs, incidents and feature requests.</p>
-      <a class="button" href="support.html#reports">Find support</a>
+  <section class="section" id="boundaries" aria-labelledby="boundaries-h">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="kicker">05 · Boundaries</span>
+          <h2 id="boundaries-h">Explicit access. <span>Visible limits.</span></h2>
+        </div>
+        <p>CloudLatch talks to AWS and nothing else. There is no CloudLatch account, server, analytics or advertising.</p>
+      </div>
+      <div class="bounds">
+        <div class="bound"><h3>One folder at a time</h3><p>The app works inside the macOS App Sandbox and only accesses the AWS directory you choose for each account.</p></div>
+        <div class="bound"><h3>Keychain for sessions</h3><p>Temporary source sessions and the MFA device serial are kept in the macOS Keychain, separately for each account.</p></div>
+        <div class="bound"><h3>Quiet diagnostics</h3><p>Local logs record that a refresh started or failed, without profile names or raw AWS error payloads.</p></div>
+      </div>
+      <p class="scope">Current scope: macOS 14 or later and IAM user access keys, with or without MFA. IAM Identity Center / SSO, <code>credential_process</code>, role-based source profiles and temporary source credentials are not currently supported. <a href="privacy.html">Read about data handling.</a></p>
+    </div>
+  </section>
+
+  <section class="section" id="get" aria-labelledby="get-h">
+    <div class="wrap">
+      <div class="release">
+        <div>
+          <h2 id="get-h">In preparation for the App Store.</h2>
+          <p>CloudLatch is under development and not yet publicly available. A download link will be added when the app is available.</p>
+          <p>See the <a href="https://github.com/Chrominskyy/cloudlatch-site/blob/main/CHANGELOG.md">changelog</a> for what each version adds. Unreleased entries are not downloads.</p>
+          <div class="cta-row">
+            <a class="button primary" href="support.html">Read the setup guide</a>
+            <a class="button" href="https://github.com/Chrominskyy/cloudlatch-site/issues/new/choose">Report or ask</a>
+          </div>
+        </div>
+        <ul class="req" aria-label="Requirements">
+          <li>System <b>macOS 14 or later</b></li>
+          <li>Source <b>IAM user access keys</b></li>
+          <li>MFA <b>optional, per account</b></li>
+          <li>AWS CLI <b>not required</b></li>
+          <li>SSO <b>not supported</b></li>
+        </ul>
+      </div>
     </div>
   </section>
 </main>
+
 <footer class="site-footer">
-  <div class="container">
-    <p>by <a href="https://github.com/Chrominskyy">Chrominsky</a></p>
-    <p>CloudLatch. A native utility for AWS sessions.</p>
-    <p>Independent software, not affiliated with or endorsed by Amazon Web Services.</p>
-    <nav aria-label="Footer navigation">
+  <div class="wrap footer-inner">
+    <div>
+      <a class="brand" href="./"><img src="assets/app-icon-256.png" alt="CloudLatch app icon" width="30" height="30"><span>CloudLatch</span></a>
+      <p>A native utility for AWS sessions by <a href="https://chrominsky.dev">Chrominsky</a>. Independent software, not affiliated with or endorsed by Amazon Web Services.</p>
+    </div>
+    <nav class="footer-links" aria-label="Footer">
       <a href="support.html">Support</a>
       <a href="privacy.html">Privacy</a>
       <a href="https://github.com/Chrominskyy/cloudlatch-site">GitHub</a>
