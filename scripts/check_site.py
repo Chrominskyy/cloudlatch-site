@@ -9,7 +9,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE_URL = "https://chrominskyy.github.io/cloudlatch-site/"
+BASE_URL = "https://cloudlatch.chrominsky.dev/"
 BLOCK_TAGS = {"p", "li", "h1", "h2", "h3", "h4", "h5", "h6", "div", "section",
               "summary", "td", "th", "figcaption", "br", "ul", "ol", "details", "dt", "dd"}
 TEXT_ATTRS = ("content", "alt", "aria-label", "title")

@@ -23,7 +23,7 @@ CloudLatch pairs a cloud reference with the idea of controlled access. It belong
 
 ## Status
 
-The first static website is implemented: product overview, setup/support and development-stage privacy information. It is intended to be served from https://chrominskyy.github.io/cloudlatch-site/ via GitHub Pages; live deployment is not verified from this repository. The application is being prepared for App Store distribution; no download or App Store availability is claimed.
+The first static website is implemented: product overview, setup/support and development-stage privacy information. It is intended to be served from https://cloudlatch.chrominsky.dev/ via GitHub Pages; live deployment is not verified from this repository. The application is being prepared for App Store distribution; no download or App Store availability is claimed.
 
 Only public website content belongs here. Keep application source, AWS credentials, account identifiers, session files, signing material and private diagnostics out of this repository.
 
@@ -45,7 +45,7 @@ Report vulnerabilities through the [private security channel](SECURITY.md). Comm
 - `assets/`: app icon, favicon and social image (`og-image.png`).
 - `docs/design.md`: design system and asset provenance. `docs/screenshots.md`: how to capture real app screenshots for the site. `docs/superpowers/`: the earlier redesign spec and plan.
 - `scripts/check_site.py`: static checker. `robots.txt`, `sitemap.xml`: crawler metadata. `.nojekyll` lets GitHub Pages serve `_old/`.
-- `_old/`: backup of the previous site; `_old/v1/` holds the first version. Pages carry a `noindex` meta tag, which is what keeps them out of search results (`robots.txt` takes effect only if served at the host root, not under a project path); it is not linked from the site navigation.
+- `_old/`: backup of the previous site; `_old/v1/` holds the first version. Pages carry a `noindex` meta tag, and `robots.txt` disallows `/_old/`; it is not linked from the site navigation.
 
 ## Local preview
 
