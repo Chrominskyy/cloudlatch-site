@@ -111,12 +111,14 @@ for path, page in pages.items():
         assert not url.path.startswith("/"), f"Project-path-unsafe link: {link}"
         target = (path.parent / unquote(url.path)).resolve() if url.path else path
         assert target.is_relative_to(ROOT), f"Link leaves site: {link}"
+        if target.is_dir():
+            target = target / "index.html"
         assert target.is_file(), f"Missing local target: {link}"
         if url.fragment and target in pages:
             assert unquote(url.fragment) in pages[target].ids, f"Missing anchor: {link}"
 
 # The previous site is kept only as a backup and must stay out of search results.
-old_pages = sorted((ROOT / "_old").glob("*.html"))
+old_pages = sorted((ROOT / "_old").rglob("*.html"))
 for path in old_pages:
     assert "noindex" in path.read_text(), f"Backup page missing noindex: {path}"
 

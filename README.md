@@ -40,11 +40,12 @@ Report vulnerabilities through the [private security channel](SECURITY.md). Comm
 ## Layout
 
 - `index.html`, `support.html`, `privacy.html`: the three pages.
-- `css/main.css`: the single stylesheet (cascade layers).
-- `assets/`: hero images (WebP and JPEG), favicon and social image.
-- `docs/design.md`: design system and asset provenance. `docs/superpowers/`: redesign spec and plan.
-- `scripts/check_site.py`: static checker. `robots.txt`, `sitemap.xml`: crawler metadata.
-- `_old/`: backup of the previous site. Pages carry a `noindex` meta tag, which is what keeps them out of search results (`robots.txt` takes effect only if served at the host root, not under a project path); it is not linked from the site navigation.
+- `assets/site.css`: the single stylesheet. The site uses no JavaScript.
+- `assets/fonts/`: self-hosted Instrument Sans and Martian Mono (SIL Open Font License 1.1).
+- `assets/`: app icon, favicon and social image (`og-image.png`).
+- `docs/design.md`: design system and asset provenance. `docs/screenshots.md`: how to capture real app screenshots for the site. `docs/superpowers/`: the earlier redesign spec and plan.
+- `scripts/check_site.py`: static checker. `robots.txt`, `sitemap.xml`: crawler metadata. `.nojekyll` lets GitHub Pages serve `_old/`.
+- `_old/`: backup of the previous site; `_old/v1/` holds the first version. Pages carry a `noindex` meta tag, which is what keeps them out of search results (`robots.txt` takes effect only if served at the host root, not under a project path); it is not linked from the site navigation.
 
 ## Local preview
 
