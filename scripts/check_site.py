@@ -187,4 +187,21 @@ def check_favicon_ico(root):
 
 check_favicon_ico(ROOT)
 
+
+def check_structured_data(base, pages):
+    """Every page names the site and links it to the author's Person entity on chrominsky.dev."""
+    import json
+    for path, page in pages.items():
+        blocks = re.findall(r'<script type="application/ld\+json">(.*?)</script>', page.text, re.S)
+        assert len(blocks) == 1, f"Expected one JSON-LD block: {path}"
+        data = json.loads(blocks[0])
+        assert data.get("@type") == "WebSite" and data.get("url") == base, f"JSON-LD WebSite url: {path}"
+        assert data.get("name"), f"JSON-LD WebSite name: {path}"
+        author = data.get("author", {})
+        assert author.get("@id") == "https://chrominsky.dev/#person", f"JSON-LD author @id: {path}"
+        assert author.get("url") == "https://chrominsky.dev/", f"JSON-LD author url: {path}"
+
+
+check_structured_data(BASE_URL, pages)
+
 print(f"Passed (strict): {len(pages)} pages, {len(old_pages)} backup pages, local assets, links, anchors and basic semantics")
