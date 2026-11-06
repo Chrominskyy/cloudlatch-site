@@ -146,6 +146,13 @@ def check_robots(root, base):
         "robots.txt must not Disallow: _old pages rely on a readable noindex"
 
 
+def check_local_asset(root, base, url, where):
+    """An absolute URL on this host must resolve to a file in the repository."""
+    if url.startswith(base):
+        rel = urlsplit(url).path[len(urlsplit(base).path):] or "index.html"
+        assert (root / unquote(rel)).is_file(), f"Missing local file for {url} in {where}"
+
+
 def check_404(root, base):
     """404.html is served at any depth, so every reference must be absolute."""
     path = root / "404.html"
@@ -156,6 +163,10 @@ def check_404(root, base):
     assert len(re.findall(r"<h1[\s>]", text)) == 1, "404.html needs one h1"
     for ref in re.findall(r'(?:href|src)="([^"]*)"', text):
         assert ref.startswith((base, "https://", "#", "data:", "mailto:")), f"Relative reference in 404.html: {ref}"
+        check_local_asset(root, base, ref, "404.html")
+    page = Page(path)
+    for label, pattern in FORBIDDEN:
+        assert not pattern.search(page.text) and not pattern.search(page.visible), f"Forbidden {label}: 404.html"
     assert f'href="{base}"' in text, "404.html must link to the home page"
 
 
@@ -163,5 +174,7 @@ check_published_host(ROOT, BASE_URL)
 check_sitemap(ROOT, BASE_URL)
 check_robots(ROOT, BASE_URL)
 check_404(ROOT, BASE_URL)
+for path, page in pages.items():
+    check_local_asset(ROOT, BASE_URL, page.meta["og:image"], path.name)
 
 print(f"Passed (strict): {len(pages)} pages, {len(old_pages)} backup pages, local assets, links, anchors and basic semantics")
