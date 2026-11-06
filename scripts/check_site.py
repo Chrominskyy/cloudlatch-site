@@ -129,7 +129,7 @@ OLD_HOST = "chrominskyy.github.io"
 
 def check_published_host(root, base):
     """No published file may point at the old github.io project URL."""
-    for path in [*root.glob("*.html"), root / "robots.txt", root / "sitemap.xml"]:
+    for path in [*root.glob("*.html"), *(root / "_old").rglob("*.html"), root / "robots.txt", root / "sitemap.xml"]:
         assert OLD_HOST not in path.read_text(), f"Old host {OLD_HOST} in {path.name}"
 
 
