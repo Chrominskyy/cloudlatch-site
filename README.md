@@ -23,7 +23,7 @@ CloudLatch pairs a cloud reference with the idea of controlled access. It belong
 
 ## Status
 
-The first static website is implemented: product overview, setup/support and development-stage privacy information. It is intended to be served from https://chrominskyy.github.io/cloudlatch-site/ via GitHub Pages; live deployment is not verified from this repository. The application is being prepared for App Store distribution; no download or App Store availability is claimed.
+The first static website is implemented: product overview, setup/support and development-stage privacy information. It is intended to be served from https://cloudlatch.chrominsky.dev/ via GitHub Pages; live deployment is not verified from this repository. The application is being prepared for App Store distribution; no download or App Store availability is claimed.
 
 Only public website content belongs here. Keep application source, AWS credentials, account identifiers, session files, signing material and private diagnostics out of this repository.
 
