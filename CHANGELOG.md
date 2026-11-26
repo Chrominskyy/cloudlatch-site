@@ -2,6 +2,24 @@
 
 This log describes app changes. An unreleased entry is in development, not an available download or App Store release.
 
+## [1.4.0] - 2026-11-26
+
+Build: 11
+
+### Added
+- "Refresh all roles..." in the menu refreshes every role of the selected account in one action, asking for an MFA code once when a new source session is needed. The role selected in the menu is refreshed last, so it stays the active role behind the default profile and keeps auto-renewal; the other roles are refreshed but not auto-renewed. A role that fails does not stop the others, and the failures are listed.
+- Optional `cloudlatch://refresh-role?alias=<role alias>` link refreshes one role of the selected account. It cannot carry an MFA code, so it needs an active source session (or access-key authentication). Like account switching, it is disabled by default and its outcome, including the active profile, is written to `external-command-result.json`.
+
+### Changed
+- External commands now run one at a time in arrival order, so a refresh finishes before a following account switch is applied.
+
+## [1.3.0] - Unreleased
+
+Build: 10
+
+### Added
+- Optional `cloudlatch://switch-account?name=<account>` (or `?id=<account id>`) link for switching the selected account from scripts and tools. Disabled by default; enable it in Settings. Switching does not refresh credentials, and the outcome is written to `external-command-result.json`.
+
 ## [1.2.2] - Unreleased
 
 Build: 9
